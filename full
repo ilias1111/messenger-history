@@ -1,0 +1,18 @@
+ #   Column            Non-Null Count   Dtype
+---  ------            --------------   -----
+ 0   index             313626 non-null  int64
+ 1   sender_name       145097 non-null  category
+ 2   timestamp_ms      313626 non-null  int64
+ 3   content           27182 non-null   object
+ 4   type              313626 non-null  category
+ 5   share.link        923 non-null     object
+ 6   audio_files       313626 non-null  object
+ 7   reactions         12789 non-null   category
+ 8   photos            313626 non-null  object
+ 9   gifs              313626 non-null  object
+ 10  videos            313626 non-null  object
+ 11  sticker.uri       313626 non-null  object
+ 12  call_duration     840 non-null     float64
+ 13  missed            335 non-null     object
+ 14  share.share_text  13 non-null      object
+ 15  files             313626 non-null  object

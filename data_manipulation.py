@@ -21,13 +21,21 @@ def clean_dataframe(name, chat_data):
     except:
         print("Error in " + str(name) + " at encoding")
     try:
-        chat_data["reactions"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: tools.string_enc(x[0]["reaction"]))
-        chat_data["reactions"] = chat_data["reactions"].astype('category')
+        chat_data["Reaction"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: tools.string_enc(x[0]["reaction"]))
+        chat_data["Reaction"] = chat_data["Reaction"].astype('category')
+    except:
+        pass
+
+    try:
+        chat_data["Actor"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: tools.string_enc(x[0]["actor"]))
+        chat_data["Actor"] = chat_data["Actor"].astype('category')
     except:
         pass
 
     chat_data["type"] = chat_data["type"].astype('category')
     chat_data["sender_name"] = chat_data["sender_name"].astype('category')
+
+    chat_data.drop(columns=["reactions"], inplace=True)
 
     return chat_data
 

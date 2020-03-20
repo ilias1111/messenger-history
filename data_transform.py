@@ -1,7 +1,7 @@
 import os
 import glob
 import json
-import tools
+import help_functions
 import re
 import pandas as pd
 import data_manipulation
@@ -28,9 +28,9 @@ def name_exporter(folder_loc):
             if raw_data["participants"][0]["name"] == "Facebook User":
                 name = "Facebook_User_" + raw_data["thread_path"].split("_")[1]
             else:
-                name = tools.string_enc(raw_data["participants"][0]["name"])
+                name = help_functions.string_enc(raw_data["participants"][0]["name"])
         else:
-            name = tools.string_enc(raw_data["title"])
+            name = help_functions.string_enc(raw_data["title"])
 
     return re.sub('[<>:"/|\?*]+', '', name)
 

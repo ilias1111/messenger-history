@@ -1,7 +1,8 @@
 import pandas as pd
-import tools
+import help_functions
 import os
 import numpy as np
+
 
 def clean_dataframe(name, chat_data):
 
@@ -10,24 +11,24 @@ def clean_dataframe(name, chat_data):
 
     for i in range(0, len(current_col_names)):
         try:
-            tools.clean_columns(chat_data, current_col_names[i], formated_col_names[i])
+            help_functions.clean_columns(chat_data, current_col_names[i], formated_col_names[i])
         except KeyError:
             chat_data[current_col_names[i]] = pd.Series([False for x in range(len(chat_data.index))])
 
     try:
-        chat_data["sender_name"] = chat_data["sender_name"].apply(tools.string_enc)
-        chat_data["content"] = chat_data["content"].apply(tools.string_enc)
+        chat_data["sender_name"] = chat_data["sender_name"].apply(help_functions.string_enc)
+        chat_data["content"] = chat_data["content"].apply(help_functions.string_enc)
 
     except:
         print("Error in " + str(name) + " at encoding")
     try:
-        chat_data["Reaction"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: tools.string_enc(x[0]["reaction"]))
+        chat_data["Reaction"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: help_functions.string_enc(x[0]["reaction"]))
         chat_data["Reaction"] = chat_data["Reaction"].astype('category')
     except:
         pass
 
     try:
-        chat_data["Actor"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: tools.string_enc(x[0]["actor"]))
+        chat_data["Actor"] = chat_data.loc[chat_data["reactions"].isna() == False, "reactions"].apply(lambda x: help_functions.string_enc(x[0]["actor"]))
         chat_data["Actor"] = chat_data["Actor"].astype('category')
     except:
         pass
